@@ -261,6 +261,30 @@
       line-height: 1.3;
     }
 
+    .sidebar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-stack-group h3 {
+      margin-bottom: 6px;
+      color: rgba(220, 238, 241, .72);
+      font-size: .58rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .sidebar-stack-group .pill-group {
+      gap: 5px;
+    }
+
+    .sidebar-stack-group .pill {
+      padding: 3px 7px;
+      font-size: .63rem;
+    }
+
     .sidebar-note {
       margin-top: auto;
       color: rgba(220, 238, 241, .55);
@@ -766,20 +790,28 @@
 <h2 class="sidebar-title" data-i18n="languages_title" id="langues-title">Langues</h2>
 <div class="pill-group">
 <span class="pill" data-i18n="language_fr">Français - natif</span>
-<span class="pill" data-i18n="language_en">Anglais - IELTS 7/9</span>
+<span class="pill" data-i18n="language_en">Anglais - C1</span>
 </div>
 </section>
 <section aria-labelledby="stack-title" class="sidebar-section">
-<h2 class="sidebar-title" data-i18n="stack_title" id="stack-title">Stack principale</h2>
-<div class="pill-group">
-<span class="pill">Python</span>
-<span class="pill">C++</span>
-<span class="pill">Linux</span>
-<span class="pill">Batsim</span>
-<span class="pill">Grid'5000</span>
-<span class="pill">Docker</span>
-<span class="pill">Kubernetes</span>
-<span class="pill">Unreal Engine</span>
+<h2 class="sidebar-title" data-i18n="stack_title" id="stack-title">Stack technique</h2>
+<div class="sidebar-stack">
+<div class="sidebar-stack-group">
+<h3 data-i18n="skill_primary">Compétences principales</h3>
+<div class="pill-group"><span class="pill">C++</span><span class="pill">Python</span><span class="pill">Linux</span><span class="pill" data-i18n="pill_75">Ordonnancement</span><span class="pill" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="pill" data-i18n="pill_simulation">Simulation</span></div>
+</div>
+<div class="sidebar-stack-group">
+<h3 data-i18n="skill_prod">Production et infrastructure</h3>
+<div class="pill-group"><span class="pill">Git</span><span class="pill">Shell</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">CI/CD</span></div>
+</div>
+<div class="sidebar-stack-group">
+<h3 data-i18n="skill_domain">Domaines et outils spécialisés</h3>
+<div class="pill-group"><span class="pill">Batsim</span><span class="pill">SimGrid</span><span class="pill">Grid'5000</span><span class="pill" data-i18n="pill_76">Recherche opérationnelle</span><span class="pill">OR-Tools</span></div>
+</div>
+<div class="sidebar-stack-group">
+<h3 data-i18n="skill_additional">Compétences complémentaires</h3>
+<div class="pill-group"><span class="pill">C</span><span class="pill">Java</span><span class="pill">Ada</span><span class="pill">Unreal Engine</span><span class="pill">Blender</span></div>
+</div>
 </div>
 </section>
 <p class="sidebar-note" data-i18n="availability">Disponible pour des postes en ingénierie logicielle, calcul haute performance, data et optimisation.</p>
@@ -787,9 +819,9 @@
 <main class="main" id="contenu">
 <section class="hero" id="profil">
 <p class="eyebrow" data-i18n="profile_label">Profil</p>
-<h2 data-i18n="hero_title">Ingénieur logiciel spécialisé en calcul haute performance et résolution de problèmes complexes.</h2>
+<h2 data-i18n="hero_title">Ingénieur logiciel à l’interface entre systèmes, algorithmique et données.</h2>
 <p data-i18n="hero_body">
-          Je conçois des algorithmes, outils de simulation et pipelines d'analyse en Python et C++. Mon expérience associe ordonnancement, optimisation énergétique, expérimentation à grande échelle et industrialisation de prototypes scientifiques.
+          Je transforme des problèmes techniques complexes en outils fiables et exploitables, de la conception algorithmique à l’expérimentation à grande échelle. Mon parcours combine développement C++ et Python, calcul haute performance, ordonnancement, optimisation, pipelines de données et prototypage de systèmes complets.
         </p>
 <div class="hero-actions">
 <a class="button" data-i18n="contact_button" href="mailto:luc_angelelli@hotmail.fr">Me contacter</a>
@@ -814,31 +846,34 @@
 <p class="entry-item" data-i18n="exp1_b4">Conception d'un pipeline de simulation réutilisable, incluant sauvegarde, reprise et analyse de longues campagnes de calcul.</p>
 <p class="entry-item" data-i18n="exp1_b5">Publication à JSSPP 2024 et présentation des travaux lors d'IPDPS 2024 à San Francisco.</p>
 </div>
+<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">C++</span><span class="card-tag">Python</span><span class="card-tag">Batsim</span><span class="card-tag">Grid'5000</span><span class="card-tag" data-i18n="pill_75">Ordonnancement</span><span class="card-tag" data-i18n="pill_simulation">Simulation</span></div>
 </article>
 <article class="entry">
 <div class="entry-header">
 <h3 class="entry-title" data-i18n="exp2_title">Attaché temporaire d'enseignement et de recherche - Introduction à Python</h3>
 <span class="entry-date">2022</span>
 </div>
-<p class="entry-subtitle" data-i18n="exp2_sub">Université Grenoble Alpes · DLST</p>
+<p class="entry-subtitle" data-i18n="exp2_sub">Université Grenoble Alpes · DLST · Mission d’enseignement menée en parallèle du poste principal</p>
 <span class="entry-location" data-i18n="exp2_loc">Grenoble, France</span>
 <div class="entry-body">
 <p class="entry-item" data-i18n="exp2_b1">Enseignement des fondements de l'informatique, de l'algorithmique et de Python à des étudiants de première année.</p>
 <p class="entry-item" data-i18n="exp2_b2">Conception d'exercices adaptés aux difficultés rencontrées et accompagnement individualisé des étudiants.</p>
 </div>
+<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">Python</span><span class="card-tag" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="card-tag" data-i18n="pill_teaching">Pédagogie</span><span class="card-tag" data-i18n="pill_course_design">Conception pédagogique</span></div>
 </article>
 <article class="entry">
 <div class="entry-header">
 <h3 class="entry-title" data-i18n="exp3_title">Ingénieur de recherche - Ordonnancement de microservices Edge/Cloud</h3>
 <span class="entry-date">2021</span>
 </div>
-<p class="entry-subtitle" data-i18n="exp3_sub">Laboratoire d'Informatique de Grenoble</p>
+<p class="entry-subtitle" data-i18n="exp3_sub">Laboratoire d'Informatique de Grenoble · Mission de recherche distincte réalisée en 2021</p>
 <span class="entry-location" data-i18n="exp3_loc">Grenoble, France</span>
 <div class="entry-body">
 <p class="entry-item" data-i18n="exp3_b1">Développement en Python d'un pipeline d'analyse et d'optimisation multi-objectifs pour réduire les transferts de données et les temps d'exécution.</p>
 <p class="entry-item" data-i18n="exp3_b2">Mise en place d'environnements expérimentaux reproductibles avec Docker, Kubernetes et NixOS.</p>
 <p class="entry-item" data-i18n="exp3_b3">Contribution à la méthodologie, à l'analyse des résultats et à une publication présentée à CCGrid 2023.</p>
 </div>
+<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">Python</span><span class="card-tag">Docker</span><span class="card-tag">Kubernetes</span><span class="card-tag">NixOS</span><span class="card-tag" data-i18n="pill_75">Ordonnancement</span><span class="card-tag" data-i18n="pill_optimization">Optimisation multi-objectifs</span></div>
 </article>
 <article class="entry">
 <div class="entry-header">
@@ -851,6 +886,7 @@
 <p class="entry-item" data-i18n="exp4_b1">Conception d'un algorithme de slicing réduisant les vibrations causées par les déplacements de la tête d'impression.</p>
 <p class="entry-item" data-i18n="exp4_b2">Prototypage en Python, validation expérimentale puis intégration dans une application propriétaire en C++.</p>
 </div>
+<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">Python</span><span class="card-tag">C++</span><span class="card-tag" data-i18n="pill_geometry">Géométrie 3D</span><span class="card-tag" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="card-tag" data-i18n="pill_validation">Validation expérimentale</span></div>
 </article>
 </section>
 <section class="section" id="projets">
@@ -885,7 +921,7 @@
 <section class="section" id="publications">
 <h2 class="section-title" data-i18n="publications_title">Publications et conférences</h2>
 <article class="publication">
-<p class="publication-meta" data-i18n="pub1_meta">JSSPP 2024 · Présentation à IPDPS 2024, San Francisco</p>
+<p class="publication-meta" data-i18n="pub1_meta">JSSPP 2024 · Atelier organisé avec IPDPS 2024 · San Francisco</p>
 <h3 class="publication-title">Run your HPC jobs in Eco-Mode</h3>
 <p data-i18n="pub1_body">Stratégie de réduction de puissance impliquant les utilisateurs afin de limiter les interruptions de tâches tout en préservant la qualité de service globale.</p>
 <a class="text-link" href="https://doi.org/10.1007/978-3-031-74430-3_10" rel="noreferrer" target="_blank">doi.org/10.1007/978-3-031-74430-3_10</a>
@@ -925,20 +961,20 @@
 <h2 class="section-title" data-i18n="skills_title">Compétences</h2>
 <div class="skill-grid">
 <div class="skill-category">
-<h3 data-i18n="skill_dev">Développement logiciel</h3>
-<div class="pill-group"><span class="pill">Python</span><span class="pill">C++</span><span class="pill">C</span><span class="pill">Java</span><span class="pill">C#</span><span class="pill">Ada</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span></div>
+<h3 data-i18n="skill_primary">Compétences principales</h3>
+<div class="pill-group"><span class="pill">C++</span><span class="pill">Python</span><span class="pill">Linux</span><span class="pill" data-i18n="pill_75">Ordonnancement</span><span class="pill" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="pill" data-i18n="pill_simulation">Simulation</span></div>
 </div>
 <div class="skill-category">
-<h3 data-i18n="skill_hpc">HPC et systèmes</h3>
-<div class="pill-group"><span class="pill">Batsim</span><span class="pill">SimGrid</span><span class="pill">Grid'5000</span><span class="pill">Linux</span><span class="pill">Shell</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">NixOS</span></div>
+<h3 data-i18n="skill_prod">Production et infrastructure</h3>
+<div class="pill-group"><span class="pill">Git</span><span class="pill">Shell</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">NixOS</span><span class="pill">pytest</span><span class="pill">Robot Framework</span><span class="pill">CI/CD</span></div>
 </div>
 <div class="skill-category">
-<h3 data-i18n="skill_opt">Optimisation et data</h3>
-<div class="pill-group"><span class="pill" data-i18n="pill_75">Ordonnancement</span><span class="pill" data-i18n="pill_76">Recherche opérationnelle</span><span class="pill">CPLEX</span><span class="pill">Coin-OR</span><span class="pill">OR-Tools</span><span class="pill">Pandas</span><span class="pill">Scikit-learn</span><span class="pill">R</span></div>
+<h3 data-i18n="skill_domain">Domaines et outils spécialisés</h3>
+<div class="pill-group"><span class="pill">Batsim</span><span class="pill">SimGrid</span><span class="pill">Grid'5000</span><span class="pill" data-i18n="pill_76">Recherche opérationnelle</span><span class="pill">OR-Tools</span><span class="pill">CPLEX</span><span class="pill">Coin-OR</span><span class="pill">Pandas</span><span class="pill">R</span></div>
 </div>
 <div class="skill-category">
-<h3 data-i18n="skill_game">Production 3D et jeux</h3>
-<div class="pill-group"><span class="pill">Unreal Engine</span><span class="pill">Blueprints</span><span class="pill">Blender</span><span class="pill">SolidWorks</span><span class="pill">GameMaker</span><span class="pill" data-i18n="pill_77">Level design</span><span class="pill" data-i18n="pill_78">Sound design</span></div>
+<h3 data-i18n="skill_additional">Compétences complémentaires</h3>
+<div class="pill-group"><span class="pill">C</span><span class="pill">Java</span><span class="pill">Ada</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span><span class="pill">Unreal Engine</span><span class="pill">Blueprints</span><span class="pill">Blender</span><span class="pill">SolidWorks</span></div>
 </div>
 </div>
 </section>
@@ -970,16 +1006,17 @@
       "nav_skills": "Compétences",
       "languages_title": "Langues",
       "language_fr": "Français - natif",
-      "language_en": "Anglais - IELTS 7/9",
-      "stack_title": "Stack principale",
+      "language_en": "Anglais - C1",
+      "stack_title": "Stack technique",
       "availability": "Disponible pour des postes en ingénierie logicielle, calcul haute performance, data et optimisation.",
       "profile_label": "Profil",
-      "hero_title": "Ingénieur logiciel spécialisé en calcul haute performance et résolution de problèmes complexes.",
-      "hero_body": "Je conçois des algorithmes, outils de simulation et pipelines d'analyse en Python et C++. Mon expérience associe ordonnancement, optimisation énergétique, expérimentation à grande échelle et industrialisation de prototypes scientifiques.",
+      "hero_title": "Ingénieur logiciel à l’interface entre systèmes, algorithmique et données.",
+      "hero_body": "Je transforme des problèmes techniques complexes en outils fiables et exploitables, de la conception algorithmique à l’expérimentation à grande échelle. Mon parcours combine développement C++ et Python, calcul haute performance, ordonnancement, optimisation, pipelines de données et prototypage de systèmes complets.",
       "contact_button": "Me contacter",
       "linkedin_button": "Voir LinkedIn",
       "cv_button": "CV PDF",
       "experience_title": "Expérience professionnelle",
+      "experience_skills_aria": "Compétences mobilisées",
       "projects_title": "Projets sélectionnés",
       "publications_title": "Publications et conférences",
       "education_title": "Formation",
@@ -991,14 +1028,14 @@
       "exp1_b2": "Développement C++ autour de Batsim/Batsched et orchestration de campagnes expérimentales en Python, R et shell sur Grid'5000.",
       "exp1_b3": "Collecte, nettoyage et exploitation d'environ 3 To de données issues du supercalculateur Marconi100, couvrant cinq années de fonctionnement.",
       "exp1_b4": "Conception d'un pipeline de simulation réutilisable, incluant sauvegarde, reprise et analyse de longues campagnes de calcul.",
-      "exp1_b5": "Publication à JSSPP 2024 et présentation des travaux lors d'IPDPS 2024 à San Francisco.",
+      "exp1_b5": "Publication et présentation des travaux à JSSPP 2024, atelier organisé avec IPDPS 2024 à San Francisco.",
       "exp2_title": "Attaché temporaire d'enseignement et de recherche - Introduction à Python",
-      "exp2_sub": "Université Grenoble Alpes · DLST",
+      "exp2_sub": "Université Grenoble Alpes · DLST · Mission d’enseignement menée en parallèle du poste principal",
       "exp2_loc": "Grenoble, France",
       "exp2_b1": "Enseignement des fondements de l'informatique, de l'algorithmique et de Python à des étudiants de première année.",
       "exp2_b2": "Conception d'exercices adaptés aux difficultés rencontrées et accompagnement individualisé des étudiants.",
       "exp3_title": "Ingénieur de recherche - Ordonnancement de microservices Edge/Cloud",
-      "exp3_sub": "Laboratoire d'Informatique de Grenoble",
+      "exp3_sub": "Laboratoire d’Informatique de Grenoble · Mission de recherche distincte réalisée en 2021",
       "exp3_loc": "Grenoble, France",
       "exp3_b1": "Développement en Python d'un pipeline d'analyse et d'optimisation multi-objectifs pour réduire les transferts de données et les temps d'exécution.",
       "exp3_b2": "Mise en place d'environnements expérimentaux reproductibles avec Docker, Kubernetes et NixOS.",
@@ -1020,7 +1057,7 @@
       "card4_label": "Robotique · Fabrication",
       "card4_title": "Robot autonome Arduino",
       "card4_body": "Conception d'un robot mobile intégrant servomoteurs, capteurs, électronique embarquée, découpe laser et impression 3D.",
-      "pub1_meta": "JSSPP 2024 · Présentation à IPDPS 2024, San Francisco",
+      "pub1_meta": "JSSPP 2024 · Atelier organisé avec IPDPS 2024 · San Francisco",
       "pub1_body": "Stratégie de réduction de puissance impliquant les utilisateurs afin de limiter les interruptions de tâches tout en préservant la qualité de service globale.",
       "pub2_meta": "CCGrid 2023 · Bangalore",
       "pub2_body": "Politique d'ordonnancement multi-objectifs visant à réduire les transferts de données, le temps d'exécution et l'utilisation des ressources dans un environnement Edge-Cloud hétérogène.",
@@ -1030,10 +1067,17 @@
       "edu2_body": "Probabilités, statistiques, équations aux dérivées partielles, modélisation, images, géométrie, optimisation, cryptologie et gestion de projet agile.",
       "edu3_title": "Licence Mathématiques et Informatique - UGA",
       "edu3_body": "Mathématiques avancées, algorithmique, structures de données et programmation en C, Java, Python, C++, Ada, ARM et OCaml.",
-      "skill_dev": "Développement logiciel",
-      "skill_hpc": "HPC et systèmes",
-      "skill_opt": "Optimisation et data",
-      "skill_game": "Production 3D et jeux",
+      "skill_primary": "Compétences principales",
+      "skill_prod": "Production et infrastructure",
+      "skill_domain": "Domaines et outils spécialisés",
+      "skill_additional": "Compétences complémentaires",
+      "pill_algorithms": "Conception d’algorithmes",
+      "pill_simulation": "Simulation",
+      "pill_teaching": "Pédagogie",
+      "pill_course_design": "Conception pédagogique",
+      "pill_optimization": "Optimisation multi-objectifs",
+      "pill_geometry": "Géométrie 3D",
+      "pill_validation": "Validation expérimentale",
       "pill_75": "Ordonnancement",
       "pill_76": "Recherche opérationnelle",
       "pill_77": "Level design",
@@ -1054,16 +1098,17 @@
       "nav_skills": "Skills",
       "languages_title": "Languages",
       "language_fr": "French - native",
-      "language_en": "English - IELTS 7/9",
-      "stack_title": "Core stack",
+      "language_en": "English - C1",
+      "stack_title": "Technical stack",
       "availability": "Available for roles in software engineering, high-performance computing, data and optimization.",
       "profile_label": "Profile",
-      "hero_title": "Software engineer specializing in high-performance computing and complex problem solving.",
-      "hero_body": "I design algorithms, simulation tools and data-analysis pipelines in Python and C++. My experience combines scheduling, energy optimization, large-scale experimentation and the industrialization of scientific prototypes.",
+      "hero_title": "Software engineer working at the intersection of systems, algorithms and data.",
+      "hero_body": "I turn complex technical problems into reliable, usable tools, from algorithm design to large-scale experimentation. My background combines C++ and Python development, high-performance computing, scheduling, optimization, data pipelines and end-to-end system prototyping.",
       "contact_button": "Contact me",
       "linkedin_button": "View LinkedIn",
       "cv_button": "CV PDF",
       "experience_title": "Professional experience",
+      "experience_skills_aria": "Skills used",
       "projects_title": "Selected projects",
       "publications_title": "Publications and conferences",
       "education_title": "Education",
@@ -1075,14 +1120,14 @@
       "exp1_b2": "C++ development around Batsim/Batsched and orchestration of experimental campaigns in Python, R and shell on Grid'5000.",
       "exp1_b3": "Collected, cleaned and processed approximately 3 TB of data from the Marconi100 supercomputer, covering five years of operation.",
       "exp1_b4": "Designed a reusable simulation pipeline including checkpointing, restart and analysis of long-running campaigns.",
-      "exp1_b5": "Publication at JSSPP 2024 and presentation of the work at IPDPS 2024 in San Francisco.",
+      "exp1_b5": "Published and presented the work at JSSPP 2024, a workshop co-located with IPDPS 2024 in San Francisco.",
       "exp2_title": "Temporary Lecturer and Research Assistant - Introduction to Python",
-      "exp2_sub": "Université Grenoble Alpes · DLST",
+      "exp2_sub": "Université Grenoble Alpes · DLST · Teaching assignment carried out alongside the main position",
       "exp2_loc": "Grenoble, France",
       "exp2_b1": "Taught computer-science fundamentals, algorithms and Python to first-year undergraduate students.",
       "exp2_b2": "Designed exercises adapted to recurring difficulties and provided individualized support.",
       "exp3_title": "Research Engineer - Edge/Cloud Microservices Scheduling",
-      "exp3_sub": "Grenoble Informatics Laboratory",
+      "exp3_sub": "Grenoble Informatics Laboratory · Separate research assignment completed in 2021",
       "exp3_loc": "Grenoble, France",
       "exp3_b1": "Developed a Python multi-objective analysis and optimization pipeline to reduce data transfers and execution time.",
       "exp3_b2": "Built reproducible experimental environments with Docker, Kubernetes and NixOS.",
@@ -1104,7 +1149,7 @@
       "card4_label": "Robotics · Fabrication",
       "card4_title": "Autonomous Arduino robot",
       "card4_body": "Designed a mobile robot integrating servomotors, sensors, embedded electronics, laser cutting and 3D printing.",
-      "pub1_meta": "JSSPP 2024 · Presented at IPDPS 2024, San Francisco",
+      "pub1_meta": "JSSPP 2024 workshop · Co-located with IPDPS 2024 · San Francisco",
       "pub1_body": "A user-assisted power-reduction strategy designed to limit job interruptions while preserving overall quality of service.",
       "pub2_meta": "CCGrid 2023 · Bangalore",
       "pub2_body": "A multi-objective scheduling policy designed to reduce data transfers, execution time and resource use in a heterogeneous Edge-Cloud environment.",
@@ -1114,10 +1159,17 @@
       "edu2_body": "Probability, statistics, partial differential equations, modelling, imaging, geometry, optimization, cryptology and agile project management.",
       "edu3_title": "Bachelor's Degree in Mathematics and Computer Science - UGA",
       "edu3_body": "Advanced mathematics, algorithms, data structures and programming in C, Java, Python, C++, Ada, ARM and OCaml.",
-      "skill_dev": "Software development",
-      "skill_hpc": "HPC and systems",
-      "skill_opt": "Optimization and data",
-      "skill_game": "3D production and games",
+      "skill_primary": "Core expertise",
+      "skill_prod": "Production and infrastructure",
+      "skill_domain": "Domain expertise and specialized tools",
+      "skill_additional": "Additional skills",
+      "pill_algorithms": "Algorithm design",
+      "pill_simulation": "Simulation",
+      "pill_teaching": "Teaching",
+      "pill_course_design": "Course design",
+      "pill_optimization": "Multi-objective optimization",
+      "pill_geometry": "3D geometry",
+      "pill_validation": "Experimental validation",
       "pill_75": "Scheduling",
       "pill_76": "Operations Research",
       "pill_77": "Level design",
@@ -1204,6 +1256,9 @@
       languageToggle.setAttribute('title', languageAction);
       primaryNav.setAttribute('aria-label', translations[safeLang].nav_aria);
       document.querySelector('.top-controls').setAttribute('aria-label', translations[safeLang].controls_aria);
+      document.querySelectorAll('[data-experience-tags]').forEach((element) => {
+        element.setAttribute('aria-label', translations[safeLang].experience_skills_aria);
+      });
 
       if (persist) storage.set('language', safeLang);
       applyTheme(root.classList.contains('dark'), false);
