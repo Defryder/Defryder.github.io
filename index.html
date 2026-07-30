@@ -9,6 +9,42 @@
 <meta content="Luc Angelelli - Ingénieur logiciel HPC" property="og:title"/>
 <meta content="Ingénierie logicielle, calcul haute performance, ordonnancement, optimisation et simulation." property="og:description"/>
 <meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Luc Angelelli - Ingénieur logiciel HPC" name="twitter:title"/>
+<meta content="Ingénierie logicielle, calcul haute performance, ordonnancement, optimisation et simulation." name="twitter:description"/>
+<meta content="#12343f" name="theme-color"/>
+<meta content="index, follow" name="robots"/>
+<meta content="Luc Angelelli, HPC, Software Engineer, C++, Python, Scheduling, Optimization" name="keywords"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Luc Angelelli",
+  "jobTitle": "HPC Software Engineer",
+  "email": "mailto:luc_angelelli@hotmail.fr",
+  "telephone": "+33782751557",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Grenoble",
+    "addressCountry": "FR"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/langelelli"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Université Grenoble Alpes"
+  },
+  "knowsAbout": [
+    "High-performance computing",
+    "Software engineering",
+    "Scheduling",
+    "Operations research",
+    "C++",
+    "Python"
+  ]
+}
+</script>
 <title>Luc Angelelli - Ingénieur logiciel HPC</title>
 <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'&gt;&lt;rect width='32' height='32' rx='7' fill='%230f5f73'/&gt;&lt;path d='M8 23V9h4v10h11v4z' fill='white'/&gt;&lt;/svg&gt;" rel="icon" type="image/svg+xml"/>
 <style>
@@ -62,6 +98,11 @@
     }
 
     a { color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--cyan);
+      outline-offset: 3px;
+    }
 
     .skip-link {
       position: fixed;
@@ -187,7 +228,8 @@
     }
 
     .nav a:hover,
-    .nav a:focus-visible {
+    .nav a:focus-visible,
+    .nav a[aria-current="true"] {
       border-left-color: var(--cyan);
       color: #fff;
       transform: translateX(2px);
@@ -242,55 +284,62 @@
       gap: 9px;
     }
 
-    .theme-toggle {
+    .control-toggle {
+      position: relative;
       display: flex;
       align-items: center;
-      width: 48px;
-      height: 27px;
-      padding: 4px;
-      border: 0;
-      border-radius: 99px;
-      background: var(--teal-dark);
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,.14);
-    }
-
-    .theme-toggle .knob {
-      display: grid;
-      place-items: center;
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: #fff;
-      font-size: .65rem;
-      transition: transform .25s;
-    }
-
-    html.dark .theme-toggle .knob { transform: translateX(21px); }
-
-    .language-toggle {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 27px;
-      padding: 0;
+      justify-content: space-between;
+      width: 54px;
+      height: 29px;
+      padding: 4px 6px;
       border: 0;
       border-radius: 99px;
       background: var(--teal-dark);
       color: #fff;
-      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .04em;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(0,0,0,.14);
-      transition: transform .18s, filter .18s;
+      transition: filter .18s, transform .18s;
     }
 
-    .language-toggle:hover,
-    .language-toggle:focus-visible {
-      transform: translateY(-1px);
-      filter: brightness(1.08);
+    .control-toggle:hover { filter: brightness(1.08); }
+    .control-toggle:active { transform: translateY(1px); }
+
+    .control-toggle .control-label {
+      z-index: 1;
+      min-width: 17px;
+      font-size: .62rem;
+      font-weight: 800;
+      line-height: 1;
+      text-align: center;
+      opacity: .72;
+    }
+
+    .control-toggle .knob {
+      position: absolute;
+      left: 4px;
+      display: grid;
+      place-items: center;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: #fff;
+      color: #17343c;
+      font-size: .62rem;
+      font-weight: 800;
+      box-shadow: 0 1px 4px rgba(0,0,0,.2);
+      transition: transform .25s ease;
+    }
+
+    html.dark #theme-toggle .knob,
+    html[lang="en"] #language-toggle .knob {
+      transform: translateX(25px);
+    }
+
+    html.dark #theme-toggle .control-label:last-child,
+    html:not(.dark) #theme-toggle .control-label:first-child,
+    html[lang="en"] #language-toggle .control-label:last-child,
+    html[lang="fr"] #language-toggle .control-label:first-child {
+      opacity: 1;
     }
 
     .hero {
@@ -631,20 +680,55 @@
       .top-controls { right: 12px; top: 12px; }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
     @media print {
+      @page { margin: 14mm; }
+      body { background: #fff; color: #111; font-size: 10.5pt; }
       .top-controls, .nav, .skip-link { display: none !important; }
-      .page { display: block; box-shadow: none; }
-      .sidebar { position: static; height: auto; }
-      .main { padding: 36px; }
-      .section, .hero { break-inside: avoid; }
+      .page { display: block; width: auto; min-height: 0; box-shadow: none; }
+      .sidebar {
+        position: static;
+        height: auto;
+        overflow: visible;
+        padding: 20px 24px;
+        color: #fff;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .main { padding: 28px 24px; }
+      .hero, .entry, .project-card, .publication, .education-row, .skill-category {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .section { margin-bottom: 28px; }
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: .78em;
+        overflow-wrap: anywhere;
+      }
+      .contact-link[href^="http"]::after,
+      .button[href^="http"]::after { content: ""; }
     }
   </style>
 </head>
 <body>
 <a class="skip-link" data-i18n="skip" href="#contenu">Aller au contenu</a>
-<div class="top-controls"><button aria-label="Activer le mode sombre" class="theme-toggle" id="theme-toggle" title="Changer de thème" type="button">
-<span aria-hidden="true" class="knob">☀️</span>
-</button><button aria-label="Switch to English" class="language-toggle" id="language-toggle" title="Changer de langue" type="button">FR</button></div>
+<div class="top-controls" aria-label="Préférences d’affichage">
+<button aria-label="Activer le mode sombre" aria-pressed="false" class="control-toggle" id="theme-toggle" title="Changer de thème" type="button">
+<span aria-hidden="true" class="control-label">☀</span><span aria-hidden="true" class="control-label">☾</span><span aria-hidden="true" class="knob">☀</span>
+</button>
+<button aria-label="Switch to English" aria-pressed="false" class="control-toggle" id="language-toggle" title="Changer de langue" type="button">
+<span aria-hidden="true" class="control-label">FR</span><span aria-hidden="true" class="control-label">EN</span><span aria-hidden="true" class="knob">FR</span>
+</button>
+</div>
 <div class="page">
 <aside class="sidebar">
 <div class="identity">
@@ -670,7 +754,7 @@
 <span>LinkedIn</span>
 </a>
 </div>
-<nav aria-label="Navigation principale" class="nav">
+<nav aria-label="Navigation principale" class="nav" id="primary-nav">
 <a data-i18n="nav_profile" href="#profil">Profil</a>
 <a data-i18n="nav_experience" href="#experience">Expérience</a>
 <a data-i18n="nav_projects" href="#projets">Projets</a>
@@ -682,7 +766,7 @@
 <h2 class="sidebar-title" data-i18n="languages_title" id="langues-title">Langues</h2>
 <div class="pill-group">
 <span class="pill" data-i18n="language_fr">Français - natif</span>
-<span class="pill" data-i18n="language_en">Anglais - C1</span>
+<span class="pill" data-i18n="language_en">Anglais - IELTS 7/9</span>
 </div>
 </section>
 <section aria-labelledby="stack-title" class="sidebar-section">
@@ -868,10 +952,14 @@
     const themeToggle = document.getElementById('theme-toggle');
     const themeKnob = themeToggle.querySelector('.knob');
     const languageToggle = document.getElementById('language-toggle');
+    const languageKnob = languageToggle.querySelector('.knob');
+    const primaryNav = document.getElementById('primary-nav');
 
     const translations = {
       fr: {
       "skip": "Aller au contenu",
+      "nav_aria": "Navigation principale",
+      "controls_aria": "Préférences d’affichage",
       "tagline": "Ingénieur logiciel · HPC · Ordonnancement · Optimisation",
       "location": "Grenoble · Mobile en France",
       "nav_profile": "Profil",
@@ -882,7 +970,7 @@
       "nav_skills": "Compétences",
       "languages_title": "Langues",
       "language_fr": "Français - natif",
-      "language_en": "Anglais - C1",
+      "language_en": "Anglais - IELTS 7/9",
       "stack_title": "Stack principale",
       "availability": "Disponible pour des postes en ingénierie logicielle, calcul haute performance, data et optimisation.",
       "profile_label": "Profil",
@@ -954,6 +1042,8 @@
 },
       en: {
       "skip": "Skip to content",
+      "nav_aria": "Primary navigation",
+      "controls_aria": "Display preferences",
       "tagline": "Software Engineer · HPC · Scheduling · Optimization",
       "location": "Grenoble · Mobile throughout France",
       "nav_profile": "Profile",
@@ -964,7 +1054,7 @@
       "nav_skills": "Skills",
       "languages_title": "Languages",
       "language_fr": "French - native",
-      "language_en": "English - C1",
+      "language_en": "English - IELTS 7/9",
       "stack_title": "Core stack",
       "availability": "Available for roles in software engineering, high-performance computing, data and optimization.",
       "profile_label": "Profile",
@@ -1041,42 +1131,62 @@
         title: 'Luc Angelelli - Ingénieur logiciel HPC',
         description: 'Portfolio de Luc Angelelli, ingénieur logiciel spécialisé en calcul haute performance, ordonnancement, optimisation et développement C++/Python.',
         ogTitle: 'Luc Angelelli - Ingénieur logiciel HPC',
-        ogDescription: 'Ingénierie logicielle, calcul haute performance, ordonnancement, optimisation et simulation.'
+        ogDescription: 'Ingénierie logicielle, calcul haute performance, ordonnancement, optimisation et simulation.',
+        themeLabelDark: 'Activer le mode sombre',
+        themeLabelLight: 'Activer le mode clair'
       },
       en: {
         title: 'Luc Angelelli - HPC Software Engineer',
         description: 'Portfolio of Luc Angelelli, a software engineer specializing in high-performance computing, scheduling, optimization and C++/Python development.',
         ogTitle: 'Luc Angelelli - HPC Software Engineer',
-        ogDescription: 'Software engineering, high-performance computing, scheduling, optimization and simulation.'
+        ogDescription: 'Software engineering, high-performance computing, scheduling, optimization and simulation.',
+        themeLabelDark: 'Enable dark mode',
+        themeLabelLight: 'Enable light mode'
       }
     };
 
-    function applyTheme(isDark) {
-      root.classList.toggle('dark', isDark);
-      themeKnob.textContent = isDark ? '🌙' : '☀️';
-      const lang = root.lang === 'en' ? 'en' : 'fr';
-      themeToggle.setAttribute('aria-label', isDark
-        ? (lang === 'fr' ? 'Activer le mode clair' : 'Enable light mode')
-        : (lang === 'fr' ? 'Activer le mode sombre' : 'Enable dark mode'));
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const storage = {
+      get(key) {
+        try { return window.localStorage.getItem(key); }
+        catch (_) { return null; }
+      },
+      set(key, value) {
+        try { window.localStorage.setItem(key, value); }
+        catch (_) { /* Preferences remain active for the current page view. */ }
+      }
+    };
+
+    function currentLanguage() {
+      return root.lang === 'en' ? 'en' : 'fr';
     }
 
-    function applyLanguage(lang) {
+    function applyTheme(isDark, persist = true) {
+      root.classList.toggle('dark', isDark);
+      themeKnob.textContent = isDark ? '☾' : '☀';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+
+      const meta = pageMeta[currentLanguage()];
+      const actionLabel = isDark ? meta.themeLabelLight : meta.themeLabelDark;
+      themeToggle.setAttribute('aria-label', actionLabel);
+      themeToggle.setAttribute('title', actionLabel);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#0c242c' : '#12343f');
+
+      if (persist) storage.set('theme', isDark ? 'dark' : 'light');
+    }
+
+    function applyLanguage(lang, persist = true) {
       const safeLang = lang === 'en' ? 'en' : 'fr';
       root.lang = safeLang;
 
       document.querySelectorAll('[data-i18n]').forEach((element) => {
-        const key = element.dataset.i18n;
-        if (translations[safeLang][key] !== undefined) {
-          element.textContent = translations[safeLang][key];
-        }
+        const value = translations[safeLang][element.dataset.i18n];
+        if (typeof value === 'string') element.textContent = value;
       });
 
+      // Only trusted, hard-coded translations containing intentional markup use innerHTML.
       document.querySelectorAll('[data-i18n-html]').forEach((element) => {
-        const key = element.dataset.i18nHtml;
-        if (translations[safeLang][key] !== undefined) {
-          element.innerHTML = translations[safeLang][key];
-        }
+        const value = translations[safeLang][element.dataset.i18nHtml];
+        if (typeof value === 'string') element.innerHTML = value;
       });
 
       const meta = pageMeta[safeLang];
@@ -1084,26 +1194,66 @@
       document.querySelector('meta[name="description"]').setAttribute('content', meta.description);
       document.querySelector('meta[property="og:title"]').setAttribute('content', meta.ogTitle);
       document.querySelector('meta[property="og:description"]').setAttribute('content', meta.ogDescription);
+      document.querySelector('meta[name="twitter:title"]').setAttribute('content', meta.ogTitle);
+      document.querySelector('meta[name="twitter:description"]').setAttribute('content', meta.ogDescription);
 
-      languageToggle.textContent = safeLang === 'fr' ? 'EN' : 'FR';
-      languageToggle.setAttribute('aria-label', safeLang === 'fr' ? 'Switch to English' : 'Passer en français');
-      languageToggle.setAttribute('title', safeLang === 'fr' ? 'Switch to English' : 'Passer en français');
-      localStorage.setItem('language', safeLang);
+      languageKnob.textContent = safeLang.toUpperCase();
+      languageToggle.setAttribute('aria-pressed', String(safeLang === 'en'));
+      const languageAction = safeLang === 'fr' ? 'Switch to English' : 'Passer en français';
+      languageToggle.setAttribute('aria-label', languageAction);
+      languageToggle.setAttribute('title', languageAction);
+      primaryNav.setAttribute('aria-label', translations[safeLang].nav_aria);
+      document.querySelector('.top-controls').setAttribute('aria-label', translations[safeLang].controls_aria);
 
-      applyTheme(root.classList.contains('dark'));
+      if (persist) storage.set('language', safeLang);
+      applyTheme(root.classList.contains('dark'), false);
       document.getElementById('year').textContent = new Date().getFullYear();
     }
 
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(storedTheme ? storedTheme === 'dark' : prefersDark);
+    function initializeSectionNavigation() {
+      const links = [...primaryNav.querySelectorAll('a[href^="#"]')];
+      const sections = links
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
 
-    const storedLanguage = localStorage.getItem('language');
-    const browserLanguage = navigator.language.toLowerCase().startsWith('fr') ? 'fr' : 'en';
-    applyLanguage(storedLanguage || browserLanguage);
+      const setActive = (id) => {
+        links.forEach((link) => {
+          const active = link.getAttribute('href') === `#${id}`;
+          if (active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        if (sections[0]) setActive(sections[0].id);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, {
+        rootMargin: '-20% 0px -65% 0px',
+        threshold: [0, .1, .25, .5]
+      });
+
+      sections.forEach((section) => observer.observe(section));
+      if (sections[0]) setActive(sections[0].id);
+    }
+
+    const storedTheme = storage.get('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(storedTheme ? storedTheme === 'dark' : prefersDark, false);
+
+    const storedLanguage = storage.get('language');
+    const browserLanguage = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    applyLanguage(storedLanguage || browserLanguage, false);
+    initializeSectionNavigation();
 
     themeToggle.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    languageToggle.addEventListener('click', () => applyLanguage(root.lang === 'fr' ? 'en' : 'fr'));
+    languageToggle.addEventListener('click', () => applyLanguage(currentLanguage() === 'fr' ? 'en' : 'fr'));
   </script>
 </body>
 </html>
