@@ -343,17 +343,19 @@
     .control-toggle .knob {
       position: absolute;
       left: 4px;
+      z-index: 2;
       display: grid;
       place-items: center;
       width: 21px;
       height: 21px;
+      border: 1px solid rgba(10,42,58,.18);
       border-radius: 50%;
-      background: #fff;
-      color: #17343c;
+      background: #ffffff;
+      color: #12384b;
       font-size: .62rem;
-      font-weight: 800;
-      box-shadow: 0 1px 4px rgba(0,0,0,.2);
-      transition: transform .25s ease;
+      font-weight: 900;
+      box-shadow: 0 2px 6px rgba(0,0,0,.18);
+      transition: transform .25s ease, background-color .2s ease, color .2s ease;
     }
 
     html.dark #theme-toggle .knob,
@@ -933,7 +935,19 @@
       .contact-link[href^="http"]::after,
       .button[href^="http"]::after { content: ""; }
     }
-  </style>
+  
+
+/* Ensure active slider content stays dark blue */
+.control-toggle .knob,
+.control-toggle .knob *,
+.control-toggle .thumb,
+.control-toggle .thumb *{
+  color:#12384b !important;
+  fill:#12384b !important;
+  stroke:#12384b !important;
+}
+
+</style>
 </head>
 <body>
 <a class="skip-link" data-i18n="skip" href="#contenu">Aller au contenu</a>
