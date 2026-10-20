@@ -86,9 +86,9 @@
       padding: 0;
     }
 
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
 
-    body { overflow-x: hidden; }
+    body { overflow-x: clip; }
 
     body {
       min-height: 100vh;
@@ -948,10 +948,41 @@
 }
 
 </style>
-</head>
+<style>
+/* Structured experience descriptions; highlighted skill tags remain last. */
+.experience-group + .experience-group { margin-top: 13px; }
+.experience-heading { margin-bottom: 6px; color: var(--ink); font-size: .82rem; font-weight: 750; }
+.experience-list { padding-left: 20px; color: var(--ink-soft); font-size: .86rem; line-height: 1.65; }
+.experience-list li + li { margin-top: 5px; }
+.experience-list li::marker { color: var(--teal); }
+#projets .card p { line-height: 1.65; }
+@media (min-width: 851px) { #projets .card:first-child { grid-column: 1 / -1; } }
+</style><style>
+/* Sticky navigation shares the document scroll container. */
+.sidebar { align-self: start; height: 100vh; height: 100dvh; overscroll-behavior-y: contain; }
+.mobile-quick-access { display: none; }
+@media screen and (max-width: 850px) {
+  .sidebar { position: relative; height: auto; overflow: visible; }
+  .mobile-quick-access {
+    display: block; position: sticky; top: 0; z-index: 60;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: var(--navy); color: var(--sidebar-text);
+    border-bottom: 1px solid rgba(220,238,241,.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  .mobile-identity { padding: 7px 18px 0; color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .04em; }
+  .mobile-quick-access .nav {
+    width: 100%; margin: 0; padding: 7px 18px 10px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+  }
+  .hero, .section { scroll-margin-top: calc(100px + env(safe-area-inset-top, 0px)); }
+}
+@media print { .mobile-quick-access { display: none !important; } }
+</style></head>
 <body>
 <a class="skip-link" data-i18n="skip" href="#contenu">Aller au contenu</a>
-<div class="top-controls" aria-label="Préférences d’affichage">
+<div aria-label="Préférences d’affichage" class="top-controls">
 <button aria-label="Activer le mode sombre" aria-pressed="false" class="control-toggle" id="theme-toggle" title="Changer de thème" type="button">
 <span aria-hidden="true" class="control-label">☀</span><span aria-hidden="true" class="control-label">☾</span><span aria-hidden="true" class="knob">☀</span>
 </button>
@@ -959,7 +990,7 @@
 <span aria-hidden="true" class="control-label">FR</span><span aria-hidden="true" class="control-label">EN</span><span aria-hidden="true" class="knob">FR</span>
 </button>
 </div>
-<button class="back-to-top" id="back-to-top" type="button" aria-label="Retour en haut" title="Retour en haut">
+<button aria-label="Retour en haut" class="back-to-top" id="back-to-top" title="Retour en haut" type="button">
 <span aria-hidden="true">↑</span><span data-i18n="back_to_top">Haut</span>
 </button>
 <div class="page">
@@ -1024,19 +1055,15 @@
 </div>
 </section>
 <p class="sidebar-note" data-i18n="availability">Disponible pour des postes en ingénierie logicielle, calcul haute performance, data et optimisation.</p>
-</aside>
+</aside><div class="mobile-quick-access"><div class="mobile-identity">Luc ANGELELLI</div></div>
 <main class="main" id="contenu">
 <section class="hero" id="profil">
 <p class="eyebrow" data-i18n="profile_label">Profil</p>
 <h2 data-i18n="hero_title">Ingénieur logiciel à l’interface entre systèmes, algorithmique et données.</h2>
-<p data-i18n="hero_body">
-          Je transforme des problèmes techniques complexes en outils fiables et exploitables, de la conception algorithmique à l’expérimentation à grande échelle. Mon parcours combine développement C++ et Python, calcul haute performance, ordonnancement, optimisation, pipelines de données et prototypage de systèmes complets.
-        </p>
+<p data-i18n="hero_body">Je transforme des problèmes techniques complexes en outils fiables et exploitables, de la conception algorithmique à l’expérimentation à grande échelle. Mon parcours combine développement C++ et Python, calcul haute performance, ordonnancement, optimisation, pipelines de données et prototypage de systèmes complets.</p>
 <div class="hero-actions">
 <a class="button" data-i18n="contact_button" href="mailto:luc_angelelli@hotmail.fr">Me contacter</a>
 <a class="button secondary" data-i18n="linkedin_button" href="https://www.linkedin.com/in/langelelli" rel="noreferrer" target="_blank">Voir LinkedIn</a>
-<!-- Ajoutez votre CV PDF au dépôt puis remplacez # par son nom de fichier. -->
-<a aria-disabled="true" class="button secondary" data-i18n="cv_button" href="#" onclick="return false" title="Ajoutez le PDF au dépôt pour activer ce lien">CV PDF</a>
 </div>
 </section>
 <section class="section" id="experience">
@@ -1044,88 +1071,47 @@
 <article class="entry">
 <div class="entry-header">
 <h3 class="entry-title" data-i18n="exp1_title">Ingénieur de recherche - Optimisation énergétique des supercalculateurs</h3>
-<span class="entry-date">2021 - 2024</span>
+<span class="entry-date">10/2021 - 10/2024</span>
 </div>
 <p class="entry-subtitle" data-i18n="exp1_sub">Laboratoire d'Informatique de Grenoble · Équipe DataMove · Projet européen REGALE</p>
 <span class="entry-location" data-i18n="exp1_loc">Grenoble, France</span>
-<div class="entry-body">
-<p class="entry-item" data-i18n-html="exp1_b1"><strong>Résultat principal :</strong> conception et validation par simulation d'une stratégie permettant, sous certaines hypothèses, de limiter temporairement un système à 50 % de sa puissance tout en conservant plus de 90 % de qualité de service.</p>
-<p class="entry-item" data-i18n="exp1_b2">Développement C++ autour de Batsim/Batsched et orchestration de campagnes expérimentales en Python, R et shell sur Grid'5000.</p>
-<p class="entry-item" data-i18n="exp1_b3">Collecte, nettoyage et exploitation d'environ 3 To de données issues du supercalculateur Marconi100, couvrant cinq années de fonctionnement.</p>
-<p class="entry-item" data-i18n="exp1_b4">Conception d'un pipeline de simulation réutilisable, incluant sauvegarde, reprise et analyse de longues campagnes de calcul.</p>
-<p class="entry-item" data-i18n="exp1_b5">Publication à JSSPP 2024 et présentation des travaux lors d'IPDPS 2024 à San Francisco.</p>
-</div>
-<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">C++</span><span class="card-tag">Python</span><span class="card-tag">Batsim</span><span class="card-tag">Grid'5000</span><span class="card-tag" data-i18n="pill_75">Ordonnancement</span><span class="card-tag" data-i18n="pill_simulation">Simulation</span></div>
+<div class="entry-body"><div class="experience-group"><h4 class="experience-heading" data-i18n="main_result">Réalisation principale</h4><ul class="experience-list"><li data-i18n="exp1_main_result_1">Conception et validation expérimentale, par simulation, d'une méthode d'optimisation permettant, sous certaines hypothèses, de réduire jusqu'à 50 % la puissance disponible d'un système de calcul tout en maintenant plus de 90 % de qualité de service.</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="other_results">Autres réalisations</h4><ul class="experience-list"><li data-i18n="exp1_other_results_1">Constitution et structuration d'un jeu de données réutilisable issu du supercalculateur Marconi100, destiné à l'analyse, à la modélisation prédictive et à la simulation.</li><li data-i18n="exp1_other_results_2">Développement d'une chaîne expérimentale reproductible pour la conduite et l'analyse de simulations à grande échelle sur Batsim et Grid'5000.</li><li data-i18n="exp1_other_results_3">Publication et présentation des résultats à JSSPP 2024, atelier organisé avec IPDPS 2024 à San Francisco : « Run your HPC jobs in Eco-Mode ».</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="responsibilities">Responsabilités principales</h4><ul class="experience-list"><li data-i18n="exp1_responsibilities_1">Développement et évolution de composants C++ dans Batsim/Batsched pour étudier l'ordonnancement et la gestion de puissance.</li><li data-i18n="exp1_responsibilities_2">Développement d'outils Python, R et Shell pour préparer les données, automatiser les campagnes et analyser les résultats sous Linux.</li><li data-i18n="exp1_responsibilities_3">Collecte, nettoyage et contrôle d'environ 3 To de mesures Marconi100 couvrant cinq années d'exploitation.</li><li data-i18n="exp1_responsibilities_4">Déploiement et suivi d'expérimentations sur Grid'5000, avec sauvegarde et reprise des exécutions longues.</li><li data-i18n="exp1_responsibilities_5">Formalisation des méthodes, documentation des protocoles, visualisation et interprétation critique des résultats.</li><li data-i18n="exp1_responsibilities_6">Collaboration avec les partenaires du projet européen REGALE et contribution aux publications scientifiques, en français et en anglais.</li></ul></div></div>
+<div aria-label="Compétences mobilisées" class="card-tags" data-experience-tags=""><span class="card-tag">C++</span><span class="card-tag">Python</span><span class="card-tag">Batsim</span><span class="card-tag">Grid'5000</span><span class="card-tag" data-i18n="pill_75">Ordonnancement</span><span class="card-tag" data-i18n="pill_simulation">Simulation</span></div>
 </article>
 <article class="entry">
 <div class="entry-header">
-<h3 class="entry-title" data-i18n="exp2_title">Attaché temporaire d'enseignement et de recherche - Introduction à Python</h3>
-<span class="entry-date">2022</span>
+<h3 class="entry-title" data-i18n="exp2_title">Enseignement en informatique - Introduction à Python</h3>
+<span class="entry-date">09/2022 - 01/2023</span>
 </div>
 <p class="entry-subtitle" data-i18n="exp2_sub">Université Grenoble Alpes · DLST · Mission d’enseignement menée en parallèle du poste principal</p>
 <span class="entry-location" data-i18n="exp2_loc">Grenoble, France</span>
-<div class="entry-body">
-<p class="entry-item" data-i18n="exp2_b1">Enseignement des fondements de l'informatique, de l'algorithmique et de Python à des étudiants de première année.</p>
-<p class="entry-item" data-i18n="exp2_b2">Conception d'exercices adaptés aux difficultés rencontrées et accompagnement individualisé des étudiants.</p>
-</div>
-<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">Python</span><span class="card-tag" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="card-tag" data-i18n="pill_teaching">Pédagogie</span><span class="card-tag" data-i18n="pill_course_design">Conception pédagogique</span></div>
+<div class="entry-body"><div class="experience-group"><h4 class="experience-heading" data-i18n="main_result">Réalisation principale</h4><ul class="experience-list"><li data-i18n="exp2_main_result_1">Conception et animation d'enseignements d'introduction à l'informatique, à l'algorithmique et à Python auprès d'étudiants de première année.</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="responsibilities">Responsabilités principales</h4><ul class="experience-list"><li data-i18n="exp2_responsibilities_1">Préparation de séances, d'exercices et de supports adaptés à un public débutant.</li><li data-i18n="exp2_responsibilities_2">Accompagnement individualisé dans la compréhension des notions et la résolution d'exercices.</li><li data-i18n="exp2_responsibilities_3">Adaptation des explications aux difficultés observées et au rythme d'apprentissage du groupe.</li></ul></div></div>
+<div aria-label="Compétences mobilisées" class="card-tags" data-experience-tags=""><span class="card-tag">Python</span><span class="card-tag" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="card-tag" data-i18n="pill_teaching">Pédagogie</span><span class="card-tag" data-i18n="pill_course_design">Conception pédagogique</span></div>
 </article>
 <article class="entry">
 <div class="entry-header">
 <h3 class="entry-title" data-i18n="exp3_title">Ingénieur de recherche - Ordonnancement de microservices Edge/Cloud</h3>
-<span class="entry-date">2021</span>
+<span class="entry-date">02/2021 - 09/2021</span>
 </div>
-<p class="entry-subtitle" data-i18n="exp3_sub">Laboratoire d'Informatique de Grenoble · Mission de recherche distincte réalisée en 2021</p>
+<p class="entry-subtitle" data-i18n="exp3_sub">Laboratoire d’Informatique de Grenoble · Mission de recherche distincte réalisée en 2021</p>
 <span class="entry-location" data-i18n="exp3_loc">Grenoble, France</span>
-<div class="entry-body">
-<p class="entry-item" data-i18n="exp3_b1">Développement en Python d'un pipeline d'analyse et d'optimisation multi-objectifs pour réduire les transferts de données et les temps d'exécution.</p>
-<p class="entry-item" data-i18n="exp3_b2">Mise en place d'environnements expérimentaux reproductibles avec Docker, Kubernetes et NixOS.</p>
-<p class="entry-item" data-i18n="exp3_b3">Contribution à la méthodologie, à l'analyse des résultats et à une publication présentée à CCGrid 2023.</p>
-</div>
-<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">Python</span><span class="card-tag">Docker</span><span class="card-tag">Kubernetes</span><span class="card-tag">NixOS</span><span class="card-tag" data-i18n="pill_75">Ordonnancement</span><span class="card-tag" data-i18n="pill_optimization">Optimisation multi-objectifs</span></div>
+<div class="entry-body"><div class="experience-group"><h4 class="experience-heading" data-i18n="main_result">Réalisation principale</h4><ul class="experience-list"><li data-i18n="exp3_main_result_1">Conception et développement en Python d'une chaîne d'analyse et d'optimisation multi-objectifs pour étudier le placement et l'allocation de ressources des microservices en environnement Edge-Cloud.</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="other_results">Autres réalisations</h4><ul class="experience-list"><li data-i18n="exp3_other_results_1">Mise en place d'environnements expérimentaux reproductibles avec Docker, Kubernetes et NixOS.</li><li data-i18n="exp3_other_results_2">Contribution à la publication « Towards a Multi-objective Scheduling Policy for Serverless-based Edge-Cloud Continuum », présentée à CCGrid 2023.</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="responsibilities">Responsabilités principales</h4><ul class="experience-list"><li data-i18n="exp3_responsibilities_1">Développement et comparaison d'algorithmes d'ordonnancement pour réduire les transferts de données et les temps d'exécution.</li><li data-i18n="exp3_responsibilities_2">Formalisation des modèles d'optimisation et participation aux protocoles expérimentaux avec un doctorant.</li><li data-i18n="exp3_responsibilities_3">Déploiement des expérimentations conteneurisées, traitement des résultats et visualisation des performances.</li><li data-i18n="exp3_responsibilities_4">Analyse des résultats, documentation et contribution à la rédaction scientifique en contexte multiculturel.</li></ul></div></div>
+<div aria-label="Compétences mobilisées" class="card-tags" data-experience-tags=""><span class="card-tag">Python</span><span class="card-tag">Docker</span><span class="card-tag">Kubernetes</span><span class="card-tag">NixOS</span><span class="card-tag" data-i18n="pill_75">Ordonnancement</span><span class="card-tag" data-i18n="pill_optimization">Optimisation multi-objectifs</span></div>
 </article>
 <article class="entry">
 <div class="entry-header">
-<h3 class="entry-title" data-i18n="exp4_title">Ingénieur modélisation géométrique 3D</h3>
-<span class="entry-date">2020</span>
+<h3 class="entry-title" data-i18n="exp4_title">Développement algorithmique - Géométrie 3D (stage)</h3>
+<span class="entry-date">06/2020 - 09/2020</span>
 </div>
 <p class="entry-subtitle" data-i18n="exp4_sub">MicroLight3D</p>
 <span class="entry-location" data-i18n="exp4_loc">Grenoble, France</span>
-<div class="entry-body">
-<p class="entry-item" data-i18n="exp4_b1">Conception d'un algorithme de slicing réduisant les vibrations causées par les déplacements de la tête d'impression.</p>
-<p class="entry-item" data-i18n="exp4_b2">Prototypage en Python, validation expérimentale puis intégration dans une application propriétaire en C++.</p>
-</div>
-<div class="card-tags" data-experience-tags aria-label="Compétences mobilisées"><span class="card-tag">Python</span><span class="card-tag">C++</span><span class="card-tag" data-i18n="pill_geometry">Géométrie 3D</span><span class="card-tag" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="card-tag" data-i18n="pill_validation">Validation expérimentale</span></div>
+<div class="entry-body"><div class="experience-group"><h4 class="experience-heading" data-i18n="main_result">Réalisation principale</h4><ul class="experience-list"><li data-i18n="exp4_main_result_1">Conception d'un algorithme de découpage 3D visant à réduire les vibrations liées aux déplacements de la tête d'une imprimante micrométrique.</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="other_results">Autres réalisations</h4><ul class="experience-list"><li data-i18n="exp4_other_results_1">Prototypage en Python, validation expérimentale et intégration de la solution dans une application propriétaire en C++.</li></ul></div><div class="experience-group"><h4 class="experience-heading" data-i18n="responsibilities">Responsabilités principales</h4><ul class="experience-list"><li data-i18n="exp4_responsibilities_1">Analyse des contraintes géométriques et des mouvements de la tête d'impression.</li><li data-i18n="exp4_responsibilities_2">Conception et comparaison des solutions algorithmiques, tests et analyse des résultats.</li><li data-i18n="exp4_responsibilities_3">Présentation des résultats et adaptation du prototype aux contraintes du logiciel existant.</li></ul></div></div>
+<div aria-label="Compétences mobilisées" class="card-tags" data-experience-tags=""><span class="card-tag">Python</span><span class="card-tag">C++</span><span class="card-tag" data-i18n="pill_geometry">Géométrie 3D</span><span class="card-tag" data-i18n="pill_algorithms">Conception d’algorithmes</span><span class="card-tag" data-i18n="pill_validation">Validation expérimentale</span></div>
 </article>
 </section>
 <section class="section" id="projets">
-<h2 class="section-title" data-i18n="projects_title">Projets sélectionnés</h2>
-<div class="cards">
-<article class="card">
-<span class="card-label" data-i18n="card1_label">HPC · Recherche</span>
-<h3 data-i18n="card1_title">Eco-Mode pour supercalculateurs</h3>
-<p data-i18n="card1_body">Stratégie d'effacement énergétique fondée sur l'acceptation utilisateur, évaluée par simulation sur des charges de travail HPC réelles.</p>
-<div class="card-tags"><span class="card-tag">C++</span><span class="card-tag">Batsim</span><span class="card-tag">Python</span><span class="card-tag">Scheduling</span></div>
-</article>
-<article class="card">
-<span class="card-label" data-i18n="card2_label">Simulation · Infrastructure</span>
-<h3 data-i18n="card2_title">Campagnes Grid'5000 reproductibles</h3>
-<p data-i18n="card2_body">Outillage de campagnes longues comprenant orchestration, sauvegarde/reprise, validation des résultats et génération d'analyses.</p>
-<div class="card-tags"><span class="card-tag">Grid'5000</span><span class="card-tag">Shell</span><span class="card-tag">Python</span><span class="card-tag">C++</span></div>
-</article>
-<article class="card">
-<span class="card-label" data-i18n="card3_label">Jeu vidéo · Projet personnel</span>
-<h3 data-i18n="card3_title">Skyward</h3>
-<p data-i18n="card3_body">Jeu d'aventure et de combat de dirigeables développé en solo : systèmes de gameplay, IA, physique, production 3D, level design, musique et sound design.</p>
-<div class="card-tags"><span class="card-tag">Unreal Engine</span><span class="card-tag">C++</span><span class="card-tag">Blueprints</span><span class="card-tag">Blender</span></div>
-</article>
-<article class="card">
-<span class="card-label" data-i18n="card4_label">Robotique · Fabrication</span>
-<h3 data-i18n="card4_title">Robot autonome Arduino</h3>
-<p data-i18n="card4_body">Conception d'un robot mobile intégrant servomoteurs, capteurs, électronique embarquée, découpe laser et impression 3D.</p>
-<div class="card-tags"><span class="card-tag">Arduino</span><span class="card-tag">Capteurs</span><span class="card-tag">Prototypage</span></div>
-</article>
-</div>
+<h2 class="section-title" data-i18n="projects_title">Projets personnels</h2>
+<div class="cards"><article class="card"><span class="card-label" data-i18n="project1_label">Jeu vidéo · Développement solo</span><h3 data-i18n="project1_title">Skyward</h3><p data-i18n="project1_body1">Jeu solo d'aventure et de combat de dirigeables dans un monde d'îles flottantes. Le joueur pilote son vaisseau, commande son équipage, explore et affronte des pirates.</p><p data-i18n="project1_body2">Développement du pilotage, des armes, de la surchauffe, des dégâts et des réparations ; IA d'équipage pour la navigation, le tir et la remise en état du vaisseau.</p><p data-i18n="project1_body3">Prise en charge de la programmation, des prototypes, de la production 3D, du level design, de la musique et du son. Amélioration du jeu à partir de sessions de test et préparation d'un teaser.</p><div class="card-tags"><span class="card-tag">C++</span><span class="card-tag">Unreal Engine</span><span class="card-tag">Blender</span><span class="card-tag">SolidWorks</span><span class="card-tag">FL Studio</span><span class="card-tag">LLM</span></div></article><article class="card"><span class="card-label" data-i18n="project2_label">Jeux vidéo · Prototypes</span><h3 data-i18n="project2_title">Game Jams et expérimentations</h3><p data-i18n="project2_body1">Création de jeux et de prototypes dans le cadre de Game Jams, avec Unreal Engine et GameMaker.</p><p data-i18n="project2_body2">Conception de mécaniques de jeu, programmation et intégration de ressources visuelles et sonores pour rendre une idée jouable dans un temps limité.</p><div class="card-tags"><span class="card-tag">Unreal Engine</span><span class="card-tag">GameMaker</span><span class="card-tag">C++</span></div></article><article class="card"><span class="card-label" data-i18n="project3_label">Données · Projet personnel depuis 2019</span><h3 data-i18n="project3_title">Trading algorithmique</h3><p data-i18n="project3_body1">Développement en Python d'outils de prédiction, de classification et de trading algorithmique. Projet personnel d'expérimentation autour des données de marché.</p><p data-i18n="project3_body2">Préparation et exploration de données, expérimentation de modèles et comparaison des résultats dans des notebooks. Utilisation d'outils d'apprentissage automatique et d'optimisation.</p><div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">Jupyter</span><span class="card-tag">NumPy</span><span class="card-tag">Pandas</span><span class="card-tag">scikit-learn</span><span class="card-tag">TensorFlow / Keras</span><span class="card-tag">OR-Tools</span><span class="card-tag">LLM</span></div></article><article class="card"><span class="card-label" data-i18n="project4_label">Robotique · Fabrication</span><h3 data-i18n="project4_title">Robot autonome Arduino Nano</h3><p data-i18n="project4_body1">Conception et fabrication d'un robot en forme de renard, capable de se déplacer et d'éviter des obstacles de manière autonome.</p><p data-i18n="project4_body2">Programmation sur Arduino Nano, intégration de capteurs et de servomoteurs, assemblage électronique et mécanique, puis ajustement du comportement par essais successifs.</p><p data-i18n="project4_body3">Fabrication des pièces par impression 3D et découpe laser, dans la continuité des expérimentations réalisées en FabLab.</p><div class="card-tags"><span class="card-tag">Arduino Nano</span><span class="card-tag" data-i18n="project4_tag1">Impression 3D</span><span class="card-tag" data-i18n="project4_tag2">Découpe laser</span><span class="card-tag" data-i18n="project4_tag3">Capteurs</span><span class="card-tag" data-i18n="project4_tag4">Servomoteurs</span></div></article><article class="card"><span class="card-label" data-i18n="project5_label">Applications mobiles</span><h3 data-i18n="project5_title">Applications Android</h3><p data-i18n="project5_body1">Création de quatre applications utilitaires Android : pile ou face, lanceur de dés, calculateur d’heures de travail et assistant pour le jeu du Baccalauréat (Petit Bac).</p><p data-i18n="project5_body2">Des projets courts centrés sur des usages concrets : tirages aléatoires, calcul d’heures et aide à un jeu de mots par catégories et lettres.</p><div class="card-tags"><span class="card-tag">Android</span></div></article></div>
 </section>
 <section class="section" id="publications">
 <h2 class="section-title" data-i18n="publications_title">Publications et conférences</h2>
@@ -1201,193 +1187,253 @@
     const primaryNav = document.getElementById('primary-nav');
 
     const translations = {
-      fr: {
-      "skip": "Aller au contenu",
-      "back_to_top": "Haut",
-      "nav_aria": "Navigation principale",
-      "controls_aria": "Préférences d’affichage",
-      "tagline": "Ingénieur logiciel · HPC · Ordonnancement · Optimisation",
-      "location": "Grenoble · Mobile en France",
-      "nav_profile": "Profil",
-      "nav_experience": "Expérience",
-      "nav_projects": "Projets",
-      "nav_publications": "Publications",
-      "nav_education": "Formation",
-      "nav_skills": "Compétences",
-      "languages_title": "Langues",
-      "language_fr": "Français - natif",
-      "language_en": "Anglais - C2 (EF SET 2026)",
-      "stack_title": "Stack technique",
-      "availability": "Disponible pour des postes en ingénierie logicielle, calcul haute performance, data et optimisation.",
-      "profile_label": "Profil",
-      "hero_title": "Ingénieur logiciel à l’interface entre systèmes, algorithmique et données.",
-      "hero_body": "Je transforme des problèmes techniques complexes en outils fiables et exploitables, de la conception algorithmique à l’expérimentation à grande échelle. Mon parcours combine développement C++ et Python, calcul haute performance, ordonnancement, optimisation, pipelines de données et prototypage de systèmes complets.",
-      "contact_button": "Me contacter",
-      "linkedin_button": "Voir LinkedIn",
-      "cv_button": "CV PDF",
-      "experience_title": "Expérience professionnelle",
-      "experience_skills_aria": "Compétences mobilisées",
-      "projects_title": "Projets sélectionnés",
-      "publications_title": "Publications et conférences",
-      "education_title": "Formation",
-      "skills_title": "Compétences",
-      "exp1_title": "Ingénieur de recherche - Optimisation énergétique des supercalculateurs",
-      "exp1_sub": "Laboratoire d'Informatique de Grenoble · Équipe DataMove · Projet européen REGALE",
-      "exp1_loc": "Grenoble, France",
-      "exp1_b1": "<strong>Résultat principal :</strong> conception et validation par simulation d'une stratégie permettant, sous certaines hypothèses, de limiter temporairement un système à 50 % de sa puissance tout en conservant plus de 90 % de qualité de service.",
-      "exp1_b2": "Développement C++ autour de Batsim/Batsched et orchestration de campagnes expérimentales en Python, R et shell sur Grid'5000.",
-      "exp1_b3": "Collecte, nettoyage et exploitation d'environ 3 To de données issues du supercalculateur Marconi100, couvrant cinq années de fonctionnement.",
-      "exp1_b4": "Conception d'un pipeline de simulation réutilisable, incluant sauvegarde, reprise et analyse de longues campagnes de calcul.",
-      "exp1_b5": "Publication et présentation des travaux à JSSPP 2024, atelier organisé avec IPDPS 2024 à San Francisco.",
-      "exp2_title": "Attaché temporaire d'enseignement et de recherche - Introduction à Python",
-      "exp2_sub": "Université Grenoble Alpes · DLST · Mission d’enseignement menée en parallèle du poste principal",
-      "exp2_loc": "Grenoble, France",
-      "exp2_b1": "Enseignement des fondements de l'informatique, de l'algorithmique et de Python à des étudiants de première année.",
-      "exp2_b2": "Conception d'exercices adaptés aux difficultés rencontrées et accompagnement individualisé des étudiants.",
-      "exp3_title": "Ingénieur de recherche - Ordonnancement de microservices Edge/Cloud",
-      "exp3_sub": "Laboratoire d’Informatique de Grenoble · Mission de recherche distincte réalisée en 2021",
-      "exp3_loc": "Grenoble, France",
-      "exp3_b1": "Développement en Python d'un pipeline d'analyse et d'optimisation multi-objectifs pour réduire les transferts de données et les temps d'exécution.",
-      "exp3_b2": "Mise en place d'environnements expérimentaux reproductibles avec Docker, Kubernetes et NixOS.",
-      "exp3_b3": "Contribution à la méthodologie, à l'analyse des résultats et à une publication présentée à CCGrid 2023.",
-      "exp4_title": "Ingénieur modélisation géométrique 3D",
-      "exp4_sub": "MicroLight3D",
-      "exp4_loc": "Grenoble, France",
-      "exp4_b1": "Conception d'un algorithme de slicing réduisant les vibrations causées par les déplacements de la tête d'impression.",
-      "exp4_b2": "Prototypage en Python, validation expérimentale puis intégration dans une application propriétaire en C++.",
-      "card1_label": "HPC · Recherche",
-      "card1_title": "Eco-Mode pour supercalculateurs",
-      "card1_body": "Stratégie d'effacement énergétique fondée sur l'acceptation utilisateur, évaluée par simulation sur des charges de travail HPC réelles.",
-      "card2_label": "Simulation · Infrastructure",
-      "card2_title": "Campagnes Grid'5000 reproductibles",
-      "card2_body": "Outillage de campagnes longues comprenant orchestration, sauvegarde/reprise, validation des résultats et génération d'analyses.",
-      "card3_label": "Jeu vidéo · Projet personnel",
-      "card3_title": "Skyward",
-      "card3_body": "Jeu d'aventure et de combat de dirigeables développé en solo : systèmes de gameplay, IA, physique, production 3D, level design, musique et sound design.",
-      "card4_label": "Robotique · Fabrication",
-      "card4_title": "Robot autonome Arduino",
-      "card4_body": "Conception d'un robot mobile intégrant servomoteurs, capteurs, électronique embarquée, découpe laser et impression 3D.",
-      "pub1_meta": "JSSPP 2024 · Atelier organisé avec IPDPS 2024 · San Francisco",
-      "pub1_body": "Stratégie de réduction de puissance impliquant les utilisateurs afin de limiter les interruptions de tâches tout en préservant la qualité de service globale.",
-      "pub2_meta": "CCGrid 2023 · Bangalore",
-      "pub2_body": "Politique d'ordonnancement multi-objectifs visant à réduire les transferts de données, le temps d'exécution et l'utilisation des ressources dans un environnement Edge-Cloud hétérogène.",
-      "edu1_title": "Master 2 Operations Research, Combinatorics and Optimisation - UGA",
-      "edu1_body": "Programmation mathématique, théorie des graphes, complexité, programmation stochastique, heuristiques, approximation, ordonnancement et applications industrielles.",
-      "edu2_title": "Master 1 Science in Industrial and Applied Mathematics - UGA",
-      "edu2_body": "Probabilités, statistiques, équations aux dérivées partielles, modélisation, images, géométrie, optimisation, cryptologie et gestion de projet agile.",
-      "edu3_title": "Licence Mathématiques et Informatique - UGA",
-      "edu3_body": "Mathématiques avancées, algorithmique, structures de données et programmation en C, Java, Python, C++, Ada, ARM et OCaml.",
-      "skill_primary": "Compétences principales",
-      "skill_prod": "Production et infrastructure",
-      "skill_domain": "Domaines et outils spécialisés",
-      "skill_additional": "Compétences complémentaires",
-      "pill_algorithms": "Conception d’algorithmes",
-      "pill_simulation": "Simulation",
-      "pill_teaching": "Pédagogie",
-      "pill_course_design": "Conception pédagogique",
-      "pill_optimization": "Optimisation multi-objectifs",
-      "pill_geometry": "Géométrie 3D",
-      "pill_validation": "Validation expérimentale",
-      "pill_75": "Ordonnancement",
-      "pill_76": "Recherche opérationnelle",
-      "pill_77": "Level design",
-      "pill_78": "Sound design",
-      "footer": "© <span id=\"year\"></span> Luc Angelelli · Page statique compatible GitHub Pages"
-},
-      en: {
-      "skip": "Skip to content",
-      "back_to_top": "Top",
-      "nav_aria": "Primary navigation",
-      "controls_aria": "Display preferences",
-      "tagline": "Software Engineer · HPC · Scheduling · Optimization",
-      "location": "Grenoble · Mobile throughout France",
-      "nav_profile": "Profile",
-      "nav_experience": "Experience",
-      "nav_projects": "Projects",
-      "nav_publications": "Publications",
-      "nav_education": "Education",
-      "nav_skills": "Skills",
-      "languages_title": "Languages",
-      "language_fr": "French - native",
-      "language_en": "English - C2 (EF SET 2026)",
-      "stack_title": "Technical stack",
-      "availability": "Available for roles in software engineering, high-performance computing, data and optimization.",
-      "profile_label": "Profile",
-      "hero_title": "Software engineer working at the intersection of systems, algorithms and data.",
-      "hero_body": "I turn complex technical problems into reliable, usable tools, from algorithm design to large-scale experimentation. My background combines C++ and Python development, high-performance computing, scheduling, optimization, data pipelines and end-to-end system prototyping.",
-      "contact_button": "Contact me",
-      "linkedin_button": "View LinkedIn",
-      "cv_button": "CV PDF",
-      "experience_title": "Professional experience",
-      "experience_skills_aria": "Skills used",
-      "projects_title": "Selected projects",
-      "publications_title": "Publications and conferences",
-      "education_title": "Education",
-      "skills_title": "Skills",
-      "exp1_title": "Research Engineer - Energy Optimization for Supercomputers",
-      "exp1_sub": "Grenoble Informatics Laboratory · DataMove team · European REGALE project",
-      "exp1_loc": "Grenoble, France",
-      "exp1_b1": "<strong>Main result:</strong> designed and validated through simulation a strategy that, under specific assumptions, temporarily limits a computing system to 50% of its power while preserving more than 90% quality of service.",
-      "exp1_b2": "C++ development around Batsim/Batsched and orchestration of experimental campaigns in Python, R and shell on Grid'5000.",
-      "exp1_b3": "Collected, cleaned and processed approximately 3 TB of data from the Marconi100 supercomputer, covering five years of operation.",
-      "exp1_b4": "Designed a reusable simulation pipeline including checkpointing, restart and analysis of long-running campaigns.",
-      "exp1_b5": "Published and presented the work at JSSPP 2024, a workshop co-located with IPDPS 2024 in San Francisco.",
-      "exp2_title": "Temporary Lecturer and Research Assistant - Introduction to Python",
-      "exp2_sub": "Université Grenoble Alpes · DLST · Teaching assignment carried out alongside the main position",
-      "exp2_loc": "Grenoble, France",
-      "exp2_b1": "Taught computer-science fundamentals, algorithms and Python to first-year undergraduate students.",
-      "exp2_b2": "Designed exercises adapted to recurring difficulties and provided individualized support.",
-      "exp3_title": "Research Engineer - Edge/Cloud Microservices Scheduling",
-      "exp3_sub": "Grenoble Informatics Laboratory · Separate research assignment completed in 2021",
-      "exp3_loc": "Grenoble, France",
-      "exp3_b1": "Developed a Python multi-objective analysis and optimization pipeline to reduce data transfers and execution time.",
-      "exp3_b2": "Built reproducible experimental environments with Docker, Kubernetes and NixOS.",
-      "exp3_b3": "Contributed to the methodology, result analysis and a publication presented at CCGrid 2023.",
-      "exp4_title": "3D Geometric Modelling Engineer",
-      "exp4_sub": "MicroLight3D",
-      "exp4_loc": "Grenoble, France",
-      "exp4_b1": "Designed a slicing algorithm that reduces vibrations caused by printhead movements.",
-      "exp4_b2": "Prototyped the solution in Python, validated it experimentally and integrated it into a proprietary C++ application.",
-      "card1_label": "HPC · Research",
-      "card1_title": "Eco-Mode for supercomputers",
-      "card1_body": "A user-assisted power-capping strategy evaluated through simulation on real HPC workloads.",
-      "card2_label": "Simulation · Infrastructure",
-      "card2_title": "Reproducible Grid'5000 campaigns",
-      "card2_body": "Tooling for long-running campaigns including orchestration, checkpoint/restart, result validation and analysis generation.",
-      "card3_label": "Video game · Personal project",
-      "card3_title": "Skyward",
-      "card3_body": "A solo-developed airship adventure and combat game: gameplay systems, AI, physics, 3D production, level design, music and sound design.",
-      "card4_label": "Robotics · Fabrication",
-      "card4_title": "Autonomous Arduino robot",
-      "card4_body": "Designed a mobile robot integrating servomotors, sensors, embedded electronics, laser cutting and 3D printing.",
-      "pub1_meta": "JSSPP 2024 workshop · Co-located with IPDPS 2024 · San Francisco",
-      "pub1_body": "A user-assisted power-reduction strategy designed to limit job interruptions while preserving overall quality of service.",
-      "pub2_meta": "CCGrid 2023 · Bangalore",
-      "pub2_body": "A multi-objective scheduling policy designed to reduce data transfers, execution time and resource use in a heterogeneous Edge-Cloud environment.",
-      "edu1_title": "Master 2 in Operations Research, Combinatorics and Optimization - UGA",
-      "edu1_body": "Mathematical programming, graph theory, complexity, stochastic programming, heuristics, approximation, scheduling and industrial applications.",
-      "edu2_title": "Master 1 in Industrial and Applied Mathematics - UGA",
-      "edu2_body": "Probability, statistics, partial differential equations, modelling, imaging, geometry, optimization, cryptology and agile project management.",
-      "edu3_title": "Bachelor's Degree in Mathematics and Computer Science - UGA",
-      "edu3_body": "Advanced mathematics, algorithms, data structures and programming in C, Java, Python, C++, Ada, ARM and OCaml.",
-      "skill_primary": "Core expertise",
-      "skill_prod": "Production and infrastructure",
-      "skill_domain": "Domain expertise and specialized tools",
-      "skill_additional": "Additional skills",
-      "pill_algorithms": "Algorithm design",
-      "pill_simulation": "Simulation",
-      "pill_teaching": "Teaching",
-      "pill_course_design": "Course design",
-      "pill_optimization": "Multi-objective optimization",
-      "pill_geometry": "3D geometry",
-      "pill_validation": "Experimental validation",
-      "pill_75": "Scheduling",
-      "pill_76": "Operations Research",
-      "pill_77": "Level design",
-      "pill_78": "Sound design",
-      "footer": "© <span id=\"year\"></span> Luc Angelelli · Static page compatible with GitHub Pages"
-}
-    };
+  "fr": {
+    "skip": "Aller au contenu",
+    "back_to_top": "Haut",
+    "nav_aria": "Navigation principale",
+    "controls_aria": "Préférences d’affichage",
+    "tagline": "Ingénieur logiciel · HPC · Ordonnancement · Optimisation",
+    "location": "Grenoble · Mobile en France",
+    "nav_profile": "Profil",
+    "nav_experience": "Expérience",
+    "nav_projects": "Projets",
+    "nav_publications": "Publications",
+    "nav_education": "Formation",
+    "nav_skills": "Compétences",
+    "languages_title": "Langues",
+    "language_fr": "Français - natif",
+    "language_en": "Anglais - C2 (EF SET 2026)",
+    "stack_title": "Stack technique",
+    "availability": "Disponible pour des postes en ingénierie logicielle, calcul haute performance, data et optimisation.",
+    "profile_label": "Profil",
+    "hero_title": "Ingénieur logiciel à l’interface entre systèmes, algorithmique et données.",
+    "hero_body": "Je transforme des problèmes techniques complexes en outils fiables et exploitables, de la conception algorithmique à l’expérimentation à grande échelle. Mon parcours combine développement C++ et Python, calcul haute performance, ordonnancement, optimisation, pipelines de données et prototypage de systèmes complets.",
+    "contact_button": "Me contacter",
+    "linkedin_button": "Voir LinkedIn",
+    "experience_title": "Expérience professionnelle",
+    "experience_skills_aria": "Compétences mobilisées",
+    "projects_title": "Projets personnels",
+    "publications_title": "Publications et conférences",
+    "education_title": "Formation",
+    "skills_title": "Compétences",
+    "exp1_title": "Ingénieur de recherche - Optimisation énergétique des supercalculateurs",
+    "exp1_sub": "Laboratoire d'Informatique de Grenoble · Équipe DataMove · Projet européen REGALE",
+    "exp1_loc": "Grenoble, France",
+    "exp2_title": "Enseignement en informatique - Introduction à Python",
+    "exp2_sub": "Université Grenoble Alpes · DLST · Mission d’enseignement menée en parallèle du poste principal",
+    "exp2_loc": "Grenoble, France",
+    "exp3_title": "Ingénieur de recherche - Ordonnancement de microservices Edge/Cloud",
+    "exp3_sub": "Laboratoire d’Informatique de Grenoble · Mission de recherche distincte réalisée en 2021",
+    "exp3_loc": "Grenoble, France",
+    "exp4_title": "Développement algorithmique - Géométrie 3D (stage)",
+    "exp4_sub": "MicroLight3D",
+    "exp4_loc": "Grenoble, France",
+    "pub1_meta": "JSSPP 2024 · Atelier organisé avec IPDPS 2024 · San Francisco",
+    "pub1_body": "Stratégie de réduction de puissance impliquant les utilisateurs afin de limiter les interruptions de tâches tout en préservant la qualité de service globale.",
+    "pub2_meta": "CCGrid 2023 · Bangalore",
+    "pub2_body": "Politique d'ordonnancement multi-objectifs visant à réduire les transferts de données, le temps d'exécution et l'utilisation des ressources dans un environnement Edge-Cloud hétérogène.",
+    "edu1_title": "Master 2 Operations Research, Combinatorics and Optimisation - UGA",
+    "edu1_body": "Programmation mathématique, théorie des graphes, complexité, programmation stochastique, heuristiques, approximation, ordonnancement et applications industrielles.",
+    "edu2_title": "Master 1 Science in Industrial and Applied Mathematics - UGA",
+    "edu2_body": "Probabilités, statistiques, équations aux dérivées partielles, modélisation, images, géométrie, optimisation, cryptologie et gestion de projet agile.",
+    "edu3_title": "Licence Mathématiques et Informatique - UGA",
+    "edu3_body": "Mathématiques avancées, algorithmique, structures de données et programmation en C, Java, Python, C++, Ada, ARM et OCaml.",
+    "skill_primary": "Compétences principales",
+    "skill_prod": "Production et infrastructure",
+    "skill_domain": "Domaines et outils spécialisés",
+    "skill_additional": "Compétences complémentaires",
+    "pill_algorithms": "Conception d’algorithmes",
+    "pill_simulation": "Simulation",
+    "pill_teaching": "Pédagogie",
+    "pill_course_design": "Conception pédagogique",
+    "pill_optimization": "Optimisation multi-objectifs",
+    "pill_geometry": "Géométrie 3D",
+    "pill_validation": "Validation expérimentale",
+    "pill_75": "Ordonnancement",
+    "pill_76": "Recherche opérationnelle",
+    "pill_77": "Level design",
+    "pill_78": "Sound design",
+    "footer": "© <span id=\"year\"></span> Luc Angelelli · Page statique compatible GitHub Pages",
+    "main_result": "Réalisation principale",
+    "other_results": "Autres réalisations",
+    "responsibilities": "Responsabilités principales",
+    "exp1_main_result_1": "Conception et validation expérimentale, par simulation, d'une méthode d'optimisation permettant, sous certaines hypothèses, de réduire jusqu'à 50 % la puissance disponible d'un système de calcul tout en maintenant plus de 90 % de qualité de service.",
+    "exp1_other_results_1": "Constitution et structuration d'un jeu de données réutilisable issu du supercalculateur Marconi100, destiné à l'analyse, à la modélisation prédictive et à la simulation.",
+    "exp1_other_results_2": "Développement d'une chaîne expérimentale reproductible pour la conduite et l'analyse de simulations à grande échelle sur Batsim et Grid'5000.",
+    "exp1_other_results_3": "Publication et présentation des résultats à JSSPP 2024, atelier organisé avec IPDPS 2024 à San Francisco : « Run your HPC jobs in Eco-Mode ».",
+    "exp1_responsibilities_1": "Développement et évolution de composants C++ dans Batsim/Batsched pour étudier l'ordonnancement et la gestion de puissance.",
+    "exp1_responsibilities_2": "Développement d'outils Python, R et Shell pour préparer les données, automatiser les campagnes et analyser les résultats sous Linux.",
+    "exp1_responsibilities_3": "Collecte, nettoyage et contrôle d'environ 3 To de mesures Marconi100 couvrant cinq années d'exploitation.",
+    "exp1_responsibilities_4": "Déploiement et suivi d'expérimentations sur Grid'5000, avec sauvegarde et reprise des exécutions longues.",
+    "exp1_responsibilities_5": "Formalisation des méthodes, documentation des protocoles, visualisation et interprétation critique des résultats.",
+    "exp1_responsibilities_6": "Collaboration avec les partenaires du projet européen REGALE et contribution aux publications scientifiques, en français et en anglais.",
+    "exp2_main_result_1": "Conception et animation d'enseignements d'introduction à l'informatique, à l'algorithmique et à Python auprès d'étudiants de première année.",
+    "exp2_responsibilities_1": "Préparation de séances, d'exercices et de supports adaptés à un public débutant.",
+    "exp2_responsibilities_2": "Accompagnement individualisé dans la compréhension des notions et la résolution d'exercices.",
+    "exp2_responsibilities_3": "Adaptation des explications aux difficultés observées et au rythme d'apprentissage du groupe.",
+    "exp3_main_result_1": "Conception et développement en Python d'une chaîne d'analyse et d'optimisation multi-objectifs pour étudier le placement et l'allocation de ressources des microservices en environnement Edge-Cloud.",
+    "exp3_other_results_1": "Mise en place d'environnements expérimentaux reproductibles avec Docker, Kubernetes et NixOS.",
+    "exp3_other_results_2": "Contribution à la publication « Towards a Multi-objective Scheduling Policy for Serverless-based Edge-Cloud Continuum », présentée à CCGrid 2023.",
+    "exp3_responsibilities_1": "Développement et comparaison d'algorithmes d'ordonnancement pour réduire les transferts de données et les temps d'exécution.",
+    "exp3_responsibilities_2": "Formalisation des modèles d'optimisation et participation aux protocoles expérimentaux avec un doctorant.",
+    "exp3_responsibilities_3": "Déploiement des expérimentations conteneurisées, traitement des résultats et visualisation des performances.",
+    "exp3_responsibilities_4": "Analyse des résultats, documentation et contribution à la rédaction scientifique en contexte multiculturel.",
+    "exp4_main_result_1": "Conception d'un algorithme de découpage 3D visant à réduire les vibrations liées aux déplacements de la tête d'une imprimante micrométrique.",
+    "exp4_other_results_1": "Prototypage en Python, validation expérimentale et intégration de la solution dans une application propriétaire en C++.",
+    "exp4_responsibilities_1": "Analyse des contraintes géométriques et des mouvements de la tête d'impression.",
+    "exp4_responsibilities_2": "Conception et comparaison des solutions algorithmiques, tests et analyse des résultats.",
+    "exp4_responsibilities_3": "Présentation des résultats et adaptation du prototype aux contraintes du logiciel existant.",
+    "project1_label": "Jeu vidéo · Développement solo",
+    "project1_title": "Skyward",
+    "project1_body1": "Jeu solo d'aventure et de combat de dirigeables dans un monde d'îles flottantes. Le joueur pilote son vaisseau, commande son équipage, explore et affronte des pirates.",
+    "project1_body2": "Développement du pilotage, des armes, de la surchauffe, des dégâts et des réparations ; IA d'équipage pour la navigation, le tir et la remise en état du vaisseau.",
+    "project1_body3": "Prise en charge de la programmation, des prototypes, de la production 3D, du level design, de la musique et du son. Amélioration du jeu à partir de sessions de test et préparation d'un teaser.",
+    "project2_label": "Jeux vidéo · Prototypes",
+    "project2_title": "Game Jams et expérimentations",
+    "project2_body1": "Création de jeux et de prototypes dans le cadre de Game Jams, avec Unreal Engine et GameMaker.",
+    "project2_body2": "Conception de mécaniques de jeu, programmation et intégration de ressources visuelles et sonores pour rendre une idée jouable dans un temps limité.",
+    "project3_label": "Données · Projet personnel depuis 2019",
+    "project3_title": "Trading algorithmique",
+    "project3_body1": "Développement en Python d'outils de prédiction, de classification et de trading algorithmique. Projet personnel d'expérimentation autour des données de marché.",
+    "project3_body2": "Préparation et exploration de données, expérimentation de modèles et comparaison des résultats dans des notebooks. Utilisation d'outils d'apprentissage automatique et d'optimisation.",
+    "project4_label": "Robotique · Fabrication",
+    "project4_title": "Robot autonome Arduino Nano",
+    "project4_body1": "Conception et fabrication d'un robot en forme de renard, capable de se déplacer et d'éviter des obstacles de manière autonome.",
+    "project4_body2": "Programmation sur Arduino Nano, intégration de capteurs et de servomoteurs, assemblage électronique et mécanique, puis ajustement du comportement par essais successifs.",
+    "project4_body3": "Fabrication des pièces par impression 3D et découpe laser, dans la continuité des expérimentations réalisées en FabLab.",
+    "project4_tag1": "Impression 3D",
+    "project4_tag2": "Découpe laser",
+    "project4_tag3": "Capteurs",
+    "project4_tag4": "Servomoteurs",
+    "project5_label": "Applications mobiles",
+    "project5_title": "Applications Android",
+    "project5_body1": "Création de quatre applications utilitaires Android : pile ou face, lanceur de dés, calculateur d’heures de travail et assistant pour le jeu du Baccalauréat (Petit Bac).",
+    "project5_body2": "Des projets courts centrés sur des usages concrets : tirages aléatoires, calcul d’heures et aide à un jeu de mots par catégories et lettres."
+  },
+  "en": {
+    "skip": "Skip to content",
+    "back_to_top": "Top",
+    "nav_aria": "Primary navigation",
+    "controls_aria": "Display preferences",
+    "tagline": "Software Engineer · HPC · Scheduling · Optimization",
+    "location": "Grenoble · Mobile throughout France",
+    "nav_profile": "Profile",
+    "nav_experience": "Experience",
+    "nav_projects": "Projects",
+    "nav_publications": "Publications",
+    "nav_education": "Education",
+    "nav_skills": "Skills",
+    "languages_title": "Languages",
+    "language_fr": "French - native",
+    "language_en": "English - C2 (EF SET 2026)",
+    "stack_title": "Technical stack",
+    "availability": "Available for roles in software engineering, high-performance computing, data and optimization.",
+    "profile_label": "Profile",
+    "hero_title": "Software engineer working at the intersection of systems, algorithms and data.",
+    "hero_body": "I turn complex technical problems into reliable, usable tools, from algorithm design to large-scale experimentation. My background combines C++ and Python development, high-performance computing, scheduling, optimization, data pipelines and end-to-end system prototyping.",
+    "contact_button": "Contact me",
+    "linkedin_button": "View LinkedIn",
+    "experience_title": "Professional experience",
+    "experience_skills_aria": "Skills used",
+    "projects_title": "Personal projects",
+    "publications_title": "Publications and conferences",
+    "education_title": "Education",
+    "skills_title": "Skills",
+    "exp1_title": "Research Engineer - Energy Optimization for Supercomputers",
+    "exp1_sub": "Grenoble Informatics Laboratory · DataMove team · European REGALE project",
+    "exp1_loc": "Grenoble, France",
+    "exp2_title": "Computer Science Teaching - Introduction to Python",
+    "exp2_sub": "Université Grenoble Alpes · DLST · Teaching assignment carried out alongside the main position",
+    "exp2_loc": "Grenoble, France",
+    "exp3_title": "Research Engineer - Edge/Cloud Microservices Scheduling",
+    "exp3_sub": "Grenoble Informatics Laboratory · Separate research assignment completed in 2021",
+    "exp3_loc": "Grenoble, France",
+    "exp4_title": "Algorithm Development - 3D Geometry (Internship)",
+    "exp4_sub": "MicroLight3D",
+    "exp4_loc": "Grenoble, France",
+    "pub1_meta": "JSSPP 2024 workshop · Co-located with IPDPS 2024 · San Francisco",
+    "pub1_body": "A user-assisted power-reduction strategy designed to limit job interruptions while preserving overall quality of service.",
+    "pub2_meta": "CCGrid 2023 · Bangalore",
+    "pub2_body": "A multi-objective scheduling policy designed to reduce data transfers, execution time and resource use in a heterogeneous Edge-Cloud environment.",
+    "edu1_title": "Master 2 in Operations Research, Combinatorics and Optimization - UGA",
+    "edu1_body": "Mathematical programming, graph theory, complexity, stochastic programming, heuristics, approximation, scheduling and industrial applications.",
+    "edu2_title": "Master 1 in Industrial and Applied Mathematics - UGA",
+    "edu2_body": "Probability, statistics, partial differential equations, modelling, imaging, geometry, optimization, cryptology and agile project management.",
+    "edu3_title": "Bachelor's Degree in Mathematics and Computer Science - UGA",
+    "edu3_body": "Advanced mathematics, algorithms, data structures and programming in C, Java, Python, C++, Ada, ARM and OCaml.",
+    "skill_primary": "Core expertise",
+    "skill_prod": "Production and infrastructure",
+    "skill_domain": "Domain expertise and specialized tools",
+    "skill_additional": "Additional skills",
+    "pill_algorithms": "Algorithm design",
+    "pill_simulation": "Simulation",
+    "pill_teaching": "Teaching",
+    "pill_course_design": "Course design",
+    "pill_optimization": "Multi-objective optimization",
+    "pill_geometry": "3D geometry",
+    "pill_validation": "Experimental validation",
+    "pill_75": "Scheduling",
+    "pill_76": "Operations Research",
+    "pill_77": "Level design",
+    "pill_78": "Sound design",
+    "footer": "© <span id=\"year\"></span> Luc Angelelli · Static page compatible with GitHub Pages",
+    "main_result": "Main achievement",
+    "other_results": "Other achievements",
+    "responsibilities": "Main responsibilities",
+    "exp1_main_result_1": "Designed and experimentally validated, through simulation, an optimization method that, under specific assumptions, reduces available computing-system power by up to 50% while maintaining more than 90% quality of service.",
+    "exp1_other_results_1": "Built and structured a reusable dataset from the Marconi100 supercomputer for analysis, predictive modelling and simulation.",
+    "exp1_other_results_2": "Developed a reproducible experimental pipeline to run and analyse large-scale simulations with Batsim and Grid'5000.",
+    "exp1_other_results_3": "Published and presented the results at JSSPP 2024, a workshop co-located with IPDPS 2024 in San Francisco: 'Run your HPC jobs in Eco-Mode'.",
+    "exp1_responsibilities_1": "Developed and extended C++ components in Batsim/Batsched to study scheduling and power management.",
+    "exp1_responsibilities_2": "Developed Python, R and shell tools to prepare data, automate campaigns and analyse results on Linux.",
+    "exp1_responsibilities_3": "Collected, cleaned and checked approximately 3 TB of Marconi100 measurements covering five years of operation.",
+    "exp1_responsibilities_4": "Deployed and monitored experiments on Grid'5000, with checkpointing and restart for long runs.",
+    "exp1_responsibilities_5": "Formalized methods, documented protocols, visualized results and critically assessed their meaning.",
+    "exp1_responsibilities_6": "Collaborated with European REGALE project partners and contributed to scientific publications, working in French and English.",
+    "exp2_main_result_1": "Designed and taught introductory computer science, algorithms and Python classes for first-year undergraduate students.",
+    "exp2_responsibilities_1": "Prepared lessons, exercises and teaching materials for beginners.",
+    "exp2_responsibilities_2": "Provided individual support with understanding concepts and solving exercises.",
+    "exp2_responsibilities_3": "Adapted explanations to observed difficulties and the group's learning pace.",
+    "exp3_main_result_1": "Designed and developed a Python multi-objective analysis and optimization pipeline to study microservice placement and resource allocation in Edge-Cloud environments.",
+    "exp3_other_results_1": "Built reproducible experimental environments using Docker, Kubernetes and NixOS.",
+    "exp3_other_results_2": "Contributed to 'Towards a Multi-objective Scheduling Policy for Serverless-based Edge-Cloud Continuum', presented at CCGrid 2023.",
+    "exp3_responsibilities_1": "Developed and compared scheduling algorithms to reduce data transfers and execution times.",
+    "exp3_responsibilities_2": "Formalized optimization models and helped design experimental protocols with a PhD researcher.",
+    "exp3_responsibilities_3": "Deployed containerized experiments, processed results and visualized performance.",
+    "exp3_responsibilities_4": "Analysed results, documented the work and contributed to scientific writing in a multicultural environment.",
+    "exp4_main_result_1": "Designed a 3D slicing algorithm to reduce vibrations caused by printhead movements in a microscale 3D printer.",
+    "exp4_other_results_1": "Prototyped the solution in Python, validated it experimentally and integrated it into a proprietary C++ application.",
+    "exp4_responsibilities_1": "Analysed geometric constraints and printhead movements.",
+    "exp4_responsibilities_2": "Designed and compared algorithmic solutions, ran tests and analysed results.",
+    "exp4_responsibilities_3": "Presented results and adapted the prototype to the existing software's constraints.",
+    "project1_label": "Video game · Solo development",
+    "project1_title": "Skyward",
+    "project1_body1": "A single-player airship adventure and combat game set in a world of floating islands. The player pilots a ship, commands a crew, explores and fights pirates.",
+    "project1_body2": "Developed piloting, weapons, overheating, damage and repair systems, plus crew AI for navigation, combat and ship repairs.",
+    "project1_body3": "Responsible for programming, prototypes, 3D production, level design, music and audio. Iterative improvements through playtesting and preparation of a teaser.",
+    "project2_label": "Video games · Prototypes",
+    "project2_title": "Game Jams and experiments",
+    "project2_body1": "Created games and prototypes for Game Jams using Unreal Engine and GameMaker.",
+    "project2_body2": "Designed mechanics, programmed interactions and integrated visual and audio assets to turn an idea into a playable prototype within a limited time.",
+    "project3_label": "Data · Personal project since 2019",
+    "project3_title": "Algorithmic trading",
+    "project3_body1": "Developed Python tools for prediction, classification and algorithmic trading. A personal experimental project using market data.",
+    "project3_body2": "Prepared and explored data, experimented with models and compared results in notebooks, using machine-learning and optimization tools.",
+    "project4_label": "Robotics · Fabrication",
+    "project4_title": "Autonomous Arduino Nano robot",
+    "project4_body1": "Designed and built a fox-shaped robot capable of moving and avoiding obstacles autonomously.",
+    "project4_body2": "Programmed an Arduino Nano, integrated sensors and servomotors, assembled electronics and mechanics, and refined behaviour through iterative testing.",
+    "project4_body3": "Fabricated parts using 3D printing and laser cutting, building on experiments carried out in a university FabLab.",
+    "project4_tag1": "3D printing",
+    "project4_tag2": "Laser cutting",
+    "project4_tag3": "Sensors",
+    "project4_tag4": "Servomotors",
+    "project5_label": "Mobile apps",
+    "project5_title": "Android apps",
+    "project5_body1": "Created four Android utility apps: a coin flip, a dice roller, a work-hours calculator and an assistant for the French Baccalauréat (Petit Bac) word game.",
+    "project5_body2": "Small projects focused on practical uses: random draws, working-hours calculations and support for a category-and-initial-letter word game."
+  }
+};
 
     const pageMeta = {
       fr: {
@@ -1585,5 +1631,22 @@
     themeToggle.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
     languageToggle.addEventListener('click', () => applyLanguage(currentLanguage() === 'fr' ? 'en' : 'fr'));
   </script>
-</body>
+<script>
+// Relocate the existing links so the mobile bar is not constrained by the intro sidebar.
+(() => {
+  const nav = document.getElementById('primary-nav');
+  const sidebar = document.querySelector('.sidebar');
+  const mobileBar = document.querySelector('.mobile-quick-access');
+  const placeholder = document.createComment('Desktop quick-access position');
+  nav.before(placeholder);
+  const breakpoint = window.matchMedia('(max-width: 850px)');
+  function updateNavigationLayout() {
+    if (breakpoint.matches) mobileBar.append(nav);
+    else placeholder.after(nav);
+  }
+  updateNavigationLayout();
+  if (breakpoint.addEventListener) breakpoint.addEventListener('change', updateNavigationLayout);
+  else breakpoint.addListener(updateNavigationLayout);
+})();
+</script></body>
 </html>
